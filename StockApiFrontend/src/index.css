@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body,
+#content {
+  margin: 0;
+  background-color: #3f3f3f;
+}
+
+.app {
+  width: 95%;
+  max-width: 100rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  margin: 3rem auto;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.app::-webkit-scrollbar {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
+
+.error-text {
+  color: #b40e0e;
+}
