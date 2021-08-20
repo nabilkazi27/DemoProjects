@@ -1,0 +1,24 @@
+.spinner {
+  width: 80px;
+  height: 80px;
+}
+
+.spinner::after {
+  content: " ";
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border: 1px solid;
+  border-color: transparent teal transparent teal;
+  border-radius: 50%;
+  animation: spinnerA 2s linear infinite;
+}
+
+@keyframes spinnerA {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

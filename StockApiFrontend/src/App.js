@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="app">
       <h3>Stocks Data From Quandl</h3>
-      <MainContent />
+      <MainContent className="main" />
     </div>
   );
 }

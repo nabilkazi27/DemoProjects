@@ -7,6 +7,7 @@
   background-color: white;
   border: 1px solid black;
   color: black;
+  border-radius: 0.5em;
 }
 
 .button:hover,
@@ -18,4 +19,8 @@
 
 .divRight {
   text-align: right;
+}
+
+.divCentered {
+  text-align: center;
 }

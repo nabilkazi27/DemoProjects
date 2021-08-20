@@ -11,7 +11,7 @@
 .modal {
   position: fixed;
   top: 20vh;
-  left: 5%;
+  left: 2.5%;
   width: 95%;
   background-color: white;
   padding: 1rem;
@@ -67,4 +67,8 @@
   background-color: rgb(250, 56, 56);
   color: white;
   border-color: white;
+}
+
+.select {
+  cursor: pointer;
 }

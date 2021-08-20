@@ -3,6 +3,7 @@ import classes from "./MainContent.module.css";
 import { useEffect, useState } from "react";
 import "chartjs-adapter-moment";
 import Chart from "./Chart";
+import LoadingSpinner from "./UI/LoadingSpinner";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -179,9 +180,15 @@ const MainContent = (props) => {
           </table>
         </>
       )}
-      {loadData && <p className={classes.para}>Loading...</p>}
+      {loadData && (
+        <div className={`${classes.divCentered} ${props.className}`}>
+          <LoadingSpinner />
+        </div>
+      )}
       {stockIsEmpty && !loadData && (
-        <p className={classes.para}>No Stocks Found</p>
+        <div className={`${classes.divCentered} ${props.className}`}>
+          <p className={classes.para}>No Stocks Found</p>
+        </div>
       )}
       {showChart && (
         <Chart

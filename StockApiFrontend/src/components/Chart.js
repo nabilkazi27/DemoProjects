@@ -1,15 +1,21 @@
 import ReactDOM from "react-dom";
+import { useState, useEffect } from "react";
 
 import classes from "./Chart.module.css";
 import { Line } from "react-chartjs-2";
+import LoadingSpinner from "./UI/LoadingSpinner";
 
 const Chart = (props) => {
-  const data = {
-    labels: props.labels, //["1", "2", "3", "4", "5", "6"],
+  const [loading, setLoading] = useState(true);
+
+  const { labels, label, data, category } = props;
+
+  const chartData = {
+    labels: labels, //["1", "2", "3", "4", "5", "6"],
     datasets: [
       {
-        label: props.label,
-        data: props.data, //[12, 19, 3, 5, 2, 3],
+        label: label,
+        data: data, //[12, 19, 3, 5, 2, 3],
         fill: false,
         borderWidth: 1,
         backgroundColor: "rgb(0, 0, 200)",
@@ -35,15 +41,20 @@ const Chart = (props) => {
 
   const options = {};
 
-  const category = props.category.map((cat) => (
+  useEffect(() => {
+    setLoading(false);
+  }, [data, labels]);
+
+  const categoryList = category.map((cat) => (
     <option value={cat}>{cat}</option>
   ));
 
   const onCategoryChangeHandler = (event) => {
+    setLoading(true);
     props.onCategoryChanged(event.target.value);
   };
 
-  const categoryIsEmpty = props.data.length === 0;
+  const categoryIsEmpty = data.length === 0;
 
   return (
     <>
@@ -55,9 +66,13 @@ const Chart = (props) => {
         <div className={classes.modal}>
           <div>
             <label htmlFor="category">Category:&nbsp;</label>
-            <select id="category" onChange={onCategoryChangeHandler}>
+            <select
+              className={classes.select}
+              id="category"
+              onChange={onCategoryChangeHandler}
+            >
               <option>Select Category</option>
-              {category}
+              {categoryList}
             </select>
             <span
               className={`${classes.divRight} ${classes.button}`}
@@ -68,9 +83,18 @@ const Chart = (props) => {
           </div>
           <hr />
           {!categoryIsEmpty && (
-            <Line className={classes.chart} data={data} options={options} />
+            <Line
+              className={classes.chart}
+              data={chartData}
+              options={options}
+            />
           )}
-          {categoryIsEmpty && (
+          {loading && (
+            <div className={classes.centered}>
+              <LoadingSpinner />
+            </div>
+          )}
+          {categoryIsEmpty && !loading && (
             <p className={classes.centered}>No Category Selected</p>
           )}
         </div>,
