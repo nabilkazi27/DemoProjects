@@ -54,7 +54,12 @@ const MainContent = (props) => {
           return result.json();
         })
         .then((data) => {
-          setStocks(data);
+          const transformedStock = data.map((stock) => {
+            const diff = Math.round(stock.StockHigh - stock.StockLow);
+            const stockData = { ...stock, diff: diff };
+            return stockData;
+          });
+          setStocks(transformedStock);
           setLoadData(false);
         })
         .catch((err) => console.log(err));
@@ -145,6 +150,7 @@ const MainContent = (props) => {
                 <td>Open</td>
                 <td>High</td>
                 <td>Low</td>
+                <td>High - Low</td>
                 <td>Close</td>
                 <td>WAP</td>
                 <td>No. of Shares</td>
@@ -163,6 +169,7 @@ const MainContent = (props) => {
                   <td>{stock.StockOpen}</td>
                   <td>{stock.StockHigh}</td>
                   <td>{stock.StockLow}</td>
+                  <td>{stock.diff}</td>
                   <td>{stock.StockClose}</td>
                   <td>{stock.StockWAP}</td>
                   <td>{stock.StockNoOfShares}</td>
